@@ -1,1 +1,1 @@
-tiny todo app with side features
+todo app +
