@@ -16,8 +16,31 @@ $(document).ready(function(){
 	var goals = new Goals;
 
 	var GoalView = Backbone.View.extend({
+		tagName: 'tr',
+		initialize: function(){
 
+		},
+		template: '',
+		render: function(){
 		
+		},
+		events:{
 
+		}
+	});
+
+	var GoalsView = Backbone.View.extend({
+		el: '',
+		initialize:function(){
+
+		},
+		render:function(){
+
+		},
+		addOne:function(){
+
+		},
+		events:{
+		}
 	});
 });
