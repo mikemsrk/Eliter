@@ -9,8 +9,15 @@ $(document).ready(function(){
 	});
 
 	var Goals = Backbone.Collection.extend({
-		model:Goal
-
+		model:Goal,
+		url:'/goals'
 	});
 
+	var goals = new Goals;
+
+	var GoalView = Backbone.View.extend({
+
+		
+
+	});
 });

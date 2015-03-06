@@ -10,6 +10,12 @@ redisdb.on('error',function(err){
 
 app.use(express.static('public'));
 
+app.get('/goals',function(req,res){
+	//get redis data
+
+});
+
+
 app.listen(8000,function(){
 	console.log('Server listening on port 8000');
 });
