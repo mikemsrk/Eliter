@@ -1,5 +1,11 @@
 var express = require('express');
 var app = express();
+var redis = require('redis');
+var redisdb = redis.createClient();
+
+redisdb.on('error',function(err){
+	console.log("Error " + err);
+});
 
 
 app.use(express.static('public'));
