@@ -26,8 +26,8 @@ $(document).ready(function(){
 		},
 		template: _.template(goalTemplate),
 		render: function(){
-			//turn this model into JSON
-			//set this view's html to template + model data
+			//turn attached  model into JSON
+			//set this view's html to template w/  model data
 			var attr = this.model.toJSON();
 			this.$el.html(this.template(attr));
 			//return this view to be able to use its data in other views
@@ -49,11 +49,13 @@ $(document).ready(function(){
 			//clear out all items in the table
 			//for each item in this.collection, run addOne function
 		},
-		addOne:function(goal){
+		addOne:function(e){
 			//create a new GoalView item with {model:goal (passed parameter)}
 			//add the view item into the table
-			var goalView = new GoalView({model:goal});
-			this.$el.find('tbody').append(goalView.render().el);			
+			console.log(e.currentTarget.text);
+
+			//var goalView = new GoalView({model:goal});
+			//this.$el.find('tbody').append(goalView.render().el);			
 		},
 		events:{
 			"click .addBtn":"addOne"
