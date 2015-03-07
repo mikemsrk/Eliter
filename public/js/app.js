@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	console.log('app loaded');
 
 	//function used to turn form data into JSON
 	$.fn.serializeObject = function()
