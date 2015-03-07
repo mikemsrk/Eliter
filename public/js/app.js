@@ -1,6 +1,24 @@
 $(document).ready(function(){
 	console.log('app loaded');
 
+	//function used to turn form data into JSON
+	$.fn.serializeObject = function()
+	{
+		var o = {};
+		var a = this.serializeArray();
+		$.each(a,function(){
+			if (o[this.name] !== undefined) {
+			    if (!o[this.name].push) {
+				o[this.name] = [o[this.name]];
+			    }
+			    o[this.name].push(this.value || '');
+			} else {
+			    o[this.name] = this.value || '';
+			}
+	   	 });
+	    	return o;	
+	};
+
 	var goalTemplate = '<td><%-text%></td>'
 			+ '<td><%-date%></td>';
 
@@ -43,22 +61,29 @@ $(document).ready(function(){
 		el: '.goals',
 		initialize:function(){
 			//on this.collection - add, run addOne function
+			this.collection.on('add',this.addOne,this);
 			//on this.collection - remove, run remove function
 		},
 		render:function(){
 			//clear out all items in the table
 			//for each item in this.collection, run addOne function
 		},
-		addOne:function(e){
-			//create a new GoalView item with {model:goal (passed parameter)}
-			//add the view item into the table
-			console.log(e.currentTarget.text);
-
-			//var goalView = new GoalView({model:goal});
-			//this.$el.find('tbody').append(goalView.render().el);			
+		addOne:function(goal){
+			//renders 1 item to the list
+			//create a new goalview with passed goal param
+			var goalView = new GoalView({model:goal});
+			//builds html with goalview render, and add it to the page
+			this.$el.find('tbody').append(goalView.render().el);		
+		},
+		addNew:function(e){
+			e.preventDefault();
+			// create a new goal based on form data
+			var goal = new Goal(this.$('#new-goal').serializeObject());
+			//add the new goal to goals collection - triggers addOne function
+			goals.add(goal);
 		},
 		events:{
-			"click .addBtn":"addOne"
+			"click .addBtn":"addNew"
 		}
 	});
 
