@@ -12,8 +12,8 @@ $(document).ready(function(){
 	});
 
 	var Goals = Backbone.Collection.extend({
-		model:Goal,
-		url:'/goals'
+		model:Goal
+		//url:'/goals'
 	});
 
 	var goals = new Goals;
@@ -35,7 +35,7 @@ $(document).ready(function(){
 	});
 
 	var GoalsView = Backbone.View.extend({
-		el: '',
+		el: '.goals',
 		initialize:function(){
 
 		},
@@ -43,9 +43,13 @@ $(document).ready(function(){
 
 		},
 		addOne:function(){
-
+			var goalView = new GoalView({model:new Goal()});
+			this.$el.find('tbody').append(goalView.render().el);			
 		},
 		events:{
+			"click .addBtn":"addOne"
 		}
 	});
+
+	var goalsView = new GoalsView({collection:goals});
 });
