@@ -1,6 +1,9 @@
 $(document).ready(function(){
 	console.log('app loaded');
 
+	var goalTemplate = '<td><%-text%></td>'
+			+ '<td><%-date%></td>';
+
 	var Goal = Backbone.Model.extend({
 		defaults:{
 			date: new Date(),
@@ -18,11 +21,13 @@ $(document).ready(function(){
 	var GoalView = Backbone.View.extend({
 		tagName: 'tr',
 		initialize: function(){
-
+			this.model.on('change',this.render,this);
 		},
-		template: '',
+		template: _.template(goalTemplate),
 		render: function(){
-		
+			var attr = this.model.toJSON();
+			this.$el.html(this.template(attr));
+			return this;	
 		},
 		events:{
 
