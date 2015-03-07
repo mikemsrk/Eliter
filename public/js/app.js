@@ -79,6 +79,7 @@ $(document).ready(function(){
 			e.preventDefault();
 			// create a new goal based on form data
 			var goal = new Goal(this.$('#new-goal').serializeObject());
+			goal.set('date',new Date());
 			//add the new goal to goals collection - triggers addOne function
 			goals.add(goal);
 			//clear out the form
