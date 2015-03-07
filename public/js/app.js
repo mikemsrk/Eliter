@@ -81,6 +81,8 @@ $(document).ready(function(){
 			var goal = new Goal(this.$('#new-goal').serializeObject());
 			//add the new goal to goals collection - triggers addOne function
 			goals.add(goal);
+			//clear out the form
+			this.$('input[name="text"]').val('');
 		},
 		events:{
 			"click .addBtn":"addNew"
