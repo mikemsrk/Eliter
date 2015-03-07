@@ -1,4 +1,8 @@
 h1,h2,h3,p,a,tr,td{
 	font-family:'century gothic';
+}
 
+.goals input{
+	display:inline;
+	width:70%;
 }
