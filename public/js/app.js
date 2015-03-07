@@ -21,29 +21,38 @@ $(document).ready(function(){
 	var GoalView = Backbone.View.extend({
 		tagName: 'tr',
 		initialize: function(){
+			//when attached model changes, re-render it
 			this.model.on('change',this.render,this);
 		},
 		template: _.template(goalTemplate),
 		render: function(){
+			//turn this model into JSON
+			//set this view's html to template + model data
 			var attr = this.model.toJSON();
 			this.$el.html(this.template(attr));
+			//return this view to be able to use its data in other views
 			return this;	
 		},
 		events:{
-
+			//deleting goal item
+			//editing goal item
 		}
 	});
 
 	var GoalsView = Backbone.View.extend({
 		el: '.goals',
 		initialize:function(){
-
+			//on this.collection - add, run addOne function
+			//on this.collection - remove, run remove function
 		},
 		render:function(){
-
+			//clear out all items in the table
+			//for each item in this.collection, run addOne function
 		},
-		addOne:function(){
-			var goalView = new GoalView({model:new Goal()});
+		addOne:function(goal){
+			//create a new GoalView item with {model:goal (passed parameter)}
+			//add the view item into the table
+			var goalView = new GoalView({model:goal});
 			this.$el.find('tbody').append(goalView.render().el);			
 		},
 		events:{
