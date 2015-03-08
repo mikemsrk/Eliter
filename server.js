@@ -1,5 +1,11 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+	extended:true
+}));
+
 var redis = require('redis');
 var redisdb = redis.createClient();
 
@@ -12,6 +18,8 @@ app.use(express.static('public'));
 
 app.post('/goals',function(req,res){
 	//add to redis db
+	console.log(req.body);
+	res.end();
 });
 
 
