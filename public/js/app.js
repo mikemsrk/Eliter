@@ -29,14 +29,15 @@ $(document).ready(function(){
 	});
 
 	var Goals = Backbone.Collection.extend({
-		model:Goal
-		//url:'/goals'
+		model:Goal,
+		url:'/goals'
 	});
 
 	var goals = new Goals;
 
 	var GoalView = Backbone.View.extend({
 		tagName: 'tr',
+		urlRoot: '/goals',
 		initialize: function(){
 			//when attached model changes, re-render it
 			this.model.on('change',this.render,this);
@@ -73,6 +74,7 @@ $(document).ready(function(){
 			var goalView = new GoalView({model:goal});
 			//builds html with goalview render, and add it to the page
 			this.$el.find('tbody').append(goalView.render().el);		
+			goal.save();
 		},
 		addNew:function(e){
 			e.preventDefault();

@@ -10,9 +10,8 @@ redisdb.on('error',function(err){
 
 app.use(express.static('public'));
 
-app.get('/goals',function(req,res){
-	//get redis data
-
+app.post('/goals',function(req,res){
+	//add to redis db
 });
 
 
