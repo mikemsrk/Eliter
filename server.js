@@ -20,13 +20,18 @@ app.post('/goals',function(req,res){
 	//add to redis db
 	var jsonMsg = JSON.stringify(req.body);
 	redisdb.lpush('goals',jsonMsg,function(err,reply){
-		console.log(err);
-		console.log(reply);
+	
 	});
-	console.log(req.body);
 	res.end();
 });
 
+app.get('/goals',function(req,res){
+	//get the list of goals from db and return it
+	redisdb.lrange('goals',0,-1,function(err,data){
+		data = data.map(JSON.parse);	
+		console.log(data);
+	});
+});
 
 app.listen(8000,function(){
 	console.log('Server listening on port 8000');
