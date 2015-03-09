@@ -18,6 +18,11 @@ app.use(express.static('public'));
 
 app.post('/goals',function(req,res){
 	//add to redis db
+	var jsonMsg = JSON.stringify(req.body);
+	redisdb.lpush('goals',jsonMsg,function(err,reply){
+		console.log(err);
+		console.log(reply);
+	});
 	console.log(req.body);
 	res.end();
 });
