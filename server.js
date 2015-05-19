@@ -13,7 +13,6 @@ redisdb.on('error',function(err){
 	console.log("Error " + err);
 });
 
-
 app.use(express.static('public'));
 
 app.post('/goals',function(req,res){
